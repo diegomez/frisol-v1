@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#004f57",
+              "tertiary": "#00434a",
+              "tertiary-fixed": "#95f1ff",
+              "tertiary-fixed-dim": "#78d4e2",
+              "surface-container-highest": "#dfe3e8",
+              "surface-container-low": "#f1f4fa",
+              "on-surface-variant": "#40484c",
+              "secondary": "#516164",
+              "on-surface": "#181c20",
+              "on-primary-fixed-variant": "#004e61",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#ebeef4",
+              "primary-fixed": "#b7eaff",
+              "on-error": "#ffffff",
+              "tertiary-container": "#005c66",
+              "on-secondary": "#ffffff",
+              "inverse-surface": "#2d3135",
+              "on-primary-container": "#8ed1ea",
+              "inverse-primary": "#8dd0e9",
+              "inverse-on-surface": "#eef1f7",
+              "primary-container": "#005b71",
+              "on-secondary-container": "#57676a",
+              "on-background": "#181c20",
+              "secondary-fixed": "#d4e6e9",
+              "primary": "#004253",
+              "surface-bright": "#f7f9ff",
+              "secondary-container": "#d4e6e9",
+              "on-error-container": "#93000a",
+              "surface-variant": "#dfe3e8",
+              "on-primary": "#ffffff",
+              "secondary-fixed-dim": "#b9cacd",
+              "outline": "#70787d",
+              "surface": "#f7f9ff",
+              "on-tertiary-container": "#79d5e3",
+              "background": "#f7f9ff",
+              "surface-tint": "#19667d",
+              "surface-dim": "#d7dae0",
+              "on-secondary-fixed-variant": "#3a494c",
+              "primary-fixed-dim": "#8dd0e9",
+              "on-tertiary": "#ffffff",
+              "error-container": "#ffdad6",
+              "outline-variant": "#bfc8cc",
+              "on-secondary-fixed": "#0e1e21",
+              "surface-container-high": "#e5e8ee",
+              "on-primary-fixed": "#001f28",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#001f24"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .brand-font { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<nav class="bg-[#f7f9ff]/80 dark:bg-[#181c20]/80 backdrop-blur-xl shadow-[0px_12px_32px_rgba(24,28,32,0.06)] flex justify-between items-center px-8 h-16 w-full docked full-width top-0 z-50 fixed">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-extrabold font-['Manrope'] text-[#004253] dark:text-[#005b71]">Frisol V1</span>
+<div class="hidden md:flex gap-6">
+<a class="text-[#40484c] dark:text-[#c0c7cd] font-['Manrope'] font-semibold tracking-tight text-sm hover:text-[#005b71] transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-[#40484c] dark:text-[#c0c7cd] font-['Manrope'] font-semibold tracking-tight text-sm hover:text-[#005b71] transition-colors duration-200" href="#">Projects</a>
+<a class="text-[#004253] dark:text-[#005b71] border-b-2 border-[#004253] pb-1 font-['Manrope'] font-semibold tracking-tight text-sm" href="#">Admin</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#40484c] scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-[#40484c] scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a professional corporate administrator in a modern office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIwWkMWp89DECWCEhz8f3dqLXaoEMZsUH9IA9C4NNxfb2gnDu9Q1s5DPhrQTQ6_IzA5bzQJ7Jvi3eqmas1jtCXAV-2KdpV7WWZk6liKxpZxPsKvzUapo1FqGLwNbzTJ5VvH9EV_HmfEA7N2XeivvhsjMWH60P2QMZzZbVviuJhDlKSN_koNbfWvIjJ9rnO9HR8hBuch6uSEno7tgvT8otBPnD0gGU5Ztkf9iiNdMa2L7cCtRG1GCvzcfqcMfIijpLDpfL3sY4ZXNk"/>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-16 px-8 max-w-7xl mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div class="space-y-2">
+<nav class="flex items-center gap-2 text-on-surface-variant text-xs font-medium uppercase tracking-widest mb-4">
+<span>Admin</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary">Configuración</span>
+</nav>
+<h1 class="text-4xl font-extrabold text-primary tracking-tight">Gestión de Accesos</h1>
+<p class="text-on-surface-variant max-w-lg">Administra los permisos, roles y visibilidad de los usuarios dentro de las tribus de diagnóstico de Frisol.</p>
+</div>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-3 rounded-md font-headline font-bold flex items-center gap-2 shadow-lg hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                Crear Usuario
+            </button>
+</div>
+<!-- Dashboard Bento Grid for Metrics (Contextual) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/15 flex flex-col justify-between min-h-[140px]">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider">Total Usuarios</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-extrabold text-primary">1,284</span>
+<span class="text-tertiary text-xs font-bold">+12%</span>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary w-3/4 h-full"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/15 flex flex-col justify-between min-h-[140px]">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider">Administradores</span>
+<span class="text-3xl font-extrabold text-primary">24</span>
+<div class="flex items-center gap-1 text-on-surface-variant/60 text-xs">
+<span class="material-symbols-outlined text-sm">security</span>
+<span>Acceso nivel raíz</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/15 flex flex-col justify-between min-h-[140px]">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider">Tribus Activas</span>
+<span class="text-3xl font-extrabold text-primary">08</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white bg-primary-container text-[10px] flex items-center justify-center text-white">IT</div>
+<div class="w-6 h-6 rounded-full border-2 border-white bg-tertiary-container text-[10px] flex items-center justify-center text-white">OP</div>
+<div class="w-6 h-6 rounded-full border-2 border-white bg-secondary text-[10px] flex items-center justify-center text-white">HR</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/15 flex flex-col justify-between min-h-[140px]">
+<span class="text-on-surface-variant text-xs font-bold uppercase tracking-wider">Sesiones Activas</span>
+<span class="text-3xl font-extrabold text-tertiary">142</span>
+<div class="flex items-center gap-1 text-tertiary text-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span>Monitoreo en vivo</span>
+</div>
+</div>
+</div>
+<!-- Search & Filter Bar -->
+<div class="bg-surface-container-low p-4 rounded-t-xl flex flex-wrap gap-4 items-center justify-between">
+<div class="relative flex-1 min-w-[300px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border-none rounded-lg focus:ring-2 focus:ring-primary text-sm" placeholder="Buscar por email, nombre o tribu..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-container-highest text-primary px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                    Filtrar
+                </button>
+<button class="bg-surface-container-highest text-primary px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">file_download</span>
+                    Exportar
+                </button>
+</div>
+</div>
+<!-- Enterprise Table -->
+<div class="bg-surface-container-lowest rounded-b-xl shadow-[0px_12px_32px_rgba(24,28,32,0.06)] overflow-hidden">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 label-md text-primary uppercase tracking-wider font-bold text-[11px]">Nombre &amp; Email</th>
+<th class="px-6 py-4 label-md text-primary uppercase tracking-wider font-bold text-[11px]">Rol</th>
+<th class="px-6 py-4 label-md text-primary uppercase tracking-wider font-bold text-[11px]">Tribu</th>
+<th class="px-6 py-4 label-md text-primary uppercase tracking-wider font-bold text-[11px]">Estado</th>
+<th class="px-6 py-4 label-md text-primary uppercase tracking-wider font-bold text-[11px] text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors duration-200">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">JD</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Javier Domínguez</div>
+<div class="text-xs text-on-surface-variant">j.dominguez@frisol.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-primary text-on-primary">admin</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline">hub</span>
+<span class="text-sm font-medium text-on-surface">Core Infrastructure</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-tertiary"></div>
+<span class="ml-3 text-xs font-semibold text-tertiary">Activo</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors duration-200">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary font-bold">AL</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Ana Luzardo</div>
+<div class="text-xs text-on-surface-variant">a.luzardo@frisol.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-secondary-container text-on-secondary-container">csm</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline">hub</span>
+<span class="text-sm font-medium text-on-surface">Customer Success</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-tertiary"></div>
+<span class="ml-3 text-xs font-semibold text-tertiary">Activo</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors duration-200">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary font-bold">RM</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Roberto Mejía</div>
+<div class="text-xs text-on-surface-variant">r.mejia@frisol.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-tertiary-fixed text-on-tertiary-fixed-variant">po</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline">hub</span>
+<span class="text-sm font-medium text-on-surface">Product Lab</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-tertiary"></div>
+<span class="ml-3 text-xs font-semibold text-outline">Inactivo</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors duration-200">
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center text-primary-container font-bold">SM</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Sofía Méndez</div>
+<div class="text-xs text-on-surface-variant">s.mendez@frisol.com</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-primary-fixed text-on-primary-fixed-variant">dev</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-outline">hub</span>
+<span class="text-sm font-medium text-on-surface">Development Tribe</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-tertiary"></div>
+<span class="ml-3 text-xs font-semibold text-tertiary">Activo</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-low/30 flex items-center justify-between">
+<span class="text-xs text-on-surface-variant font-medium">Mostrando 1-10 de 1,284 usuarios</span>
+<div class="flex gap-2">
+<button class="p-2 rounded-md hover:bg-surface-container-high transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 rounded-md bg-primary text-white text-xs font-bold px-4">1</button>
+<button class="p-2 rounded-md hover:bg-surface-container-high text-xs font-bold px-4">2</button>
+<button class="p-2 rounded-md hover:bg-surface-container-high text-xs font-bold px-4">3</button>
+<button class="p-2 rounded-md hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 w-full flex justify-between px-12 py-4 border-t border-[#dfe3e8]/15 bg-white dark:bg-[#181c20] shadow-[0px_-4px_16px_rgba(0,0,0,0.04)] z-40">
+<div class="flex items-center gap-4">
+<span class="text-[#004253] dark:text-[#005b71] font-['Inter'] text-sm font-bold uppercase tracking-widest">© 2024 Frisol B2B Diagnostic Platform</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#004253] bg-[#f1f4fa] px-6 py-2 rounded-md font-['Inter'] text-sm font-bold hover:brightness-110 transition-all active:scale-[0.98]">Back</button>
+<button class="bg-[#004253] text-white px-6 py-2 rounded-md font-['Manrope'] font-bold hover:brightness-110 transition-all active:scale-[0.98]">Next Step</button>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-on-surface": "#eef1f7",
+              "on-tertiary": "#ffffff",
+              "surface-tint": "#19667d",
+              "on-secondary-fixed": "#0e1e21",
+              "surface-variant": "#dfe3e8",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-container-highest": "#dfe3e8",
+              "surface-dim": "#d7dae0",
+              "on-background": "#181c20",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#79d5e3",
+              "tertiary-container": "#005c66",
+              "on-primary": "#ffffff",
+              "primary-fixed-dim": "#8dd0e9",
+              "inverse-primary": "#8dd0e9",
+              "on-surface-variant": "#40484c",
+              "on-primary-fixed-variant": "#004e61",
+              "surface-container": "#ebeef4",
+              "error": "#ba1a1a",
+              "surface": "#f7f9ff",
+              "on-secondary-container": "#57676a",
+              "on-tertiary-fixed-variant": "#004f57",
+              "surface-container-low": "#f1f4fa",
+              "secondary": "#516164",
+              "outline-variant": "#bfc8cc",
+              "outline": "#70787d",
+              "primary-fixed": "#b7eaff",
+              "surface-bright": "#f7f9ff",
+              "secondary-fixed": "#d4e6e9",
+              "tertiary-fixed": "#95f1ff",
+              "on-surface": "#181c20",
+              "on-tertiary-fixed": "#001f24",
+              "on-error-container": "#93000a",
+              "surface-container-high": "#e5e8ee",
+              "on-error": "#ffffff",
+              "background": "#f7f9ff",
+              "secondary-fixed-dim": "#b9cacd",
+              "primary-container": "#005b71",
+              "on-primary-container": "#8ed1ea",
+              "tertiary": "#00434a",
+              "tertiary-fixed-dim": "#78d4e2",
+              "secondary-container": "#d4e6e9",
+              "on-primary-fixed": "#001f28",
+              "inverse-surface": "#2d3135",
+              "primary": "#004253",
+              "on-secondary-fixed-variant": "#3a494c"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .quote-glow {
+            box-shadow: 0px 0px 40px rgba(0, 66, 83, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-[#f7f9ff]/80 dark:bg-[#181c20]/80 backdrop-blur-xl shadow-[0px_12px_32px_rgba(24,28,32,0.06)] docked full-width top-0 z-50 flex justify-between items-center px-8 h-16 w-full fixed">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-extrabold font-['Manrope'] text-[#004253] dark:text-[#005b71]">Frisol V1</span>
+<nav class="hidden md:flex gap-6">
+<a class="font-['Manrope'] font-semibold tracking-tight text-sm text-[#40484c] dark:text-[#c0c7cd] hover:text-[#005b71] transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-['Manrope'] font-semibold tracking-tight text-sm text-[#004253] dark:text-[#005b71] border-b-2 border-[#004253] pb-1" href="#">Projects</a>
+<a class="font-['Manrope'] font-semibold tracking-tight text-sm text-[#40484c] dark:text-[#c0c7cd] hover:text-[#005b71] transition-colors duration-200" href="#">Admin</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary scale-95 active:scale-90 transition-transform" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-primary scale-95 active:scale-90 transition-transform" data-icon="settings">settings</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Close-up professional portrait of a business person in a bright modern office with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw94H67UAs54thfHJYV7M0UNt3-ztQOlzd1CXWwsfGOjiXaLokLtOkPNewdXvfwimOQxrg8DhThnopQodJyhack7sbdkru6xPYOkc2bwdrjsBfXUPBe5bYQXe9nMTz4xec5GktbwCmTo-N9K7nohi1-rw_NfE4egr0MGa03bvGRx1_K-pAzSCbJaNcOh9zwEG7AOXc7jqaiIJw8DO3yAUZvlAquR6zqphSH1AwsjwDySCXxsiJvQs9kfHUKHdFf1xtIYse9zNwzRc"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-16">
+<!-- SideNavBar -->
+<aside class="bg-[#f1f4fa] dark:bg-[#1f2429] h-[calc(100vh-64px)] w-64 fixed left-0 flex flex-col py-6 gap-2 no-shadows">
+<div class="px-6 mb-6">
+<h2 class="font-['Manrope'] font-bold text-[#004253] text-lg">PRJ-00001</h2>
+<p class="font-['Inter'] text-xs font-medium uppercase tracking-widest text-on-surface-variant">Client Name</p>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="text-[#40484c] dark:text-[#c0c7cd] px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs font-medium uppercase tracking-widest hover:bg-[#dfe3e8] dark:hover:bg-slate-800 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span> Cliente
+                </a>
+<a class="text-[#40484c] dark:text-[#c0c7cd] px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs font-medium uppercase tracking-widest hover:bg-[#dfe3e8] dark:hover:bg-slate-800 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span> Diagnóstico
+                </a>
+<a class="text-[#40484c] dark:text-[#c0c7cd] px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs font-medium uppercase tracking-widest hover:bg-[#dfe3e8] dark:hover:bg-slate-800 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span> Evidencia
+                </a>
+<!-- Active Item -->
+<a class="bg-[#004253] text-white rounded-md mx-2 py-3 flex items-center gap-3 font-['Inter'] text-xs font-medium uppercase tracking-widest transition-all duration-300 ease-in-out" href="#">
+<span class="ml-2 material-symbols-outlined" data-icon="record_voice_over">record_voice_over</span> Voz del Dolor
+                </a>
+<a class="text-[#40484c] dark:text-[#c0c7cd] px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs font-medium uppercase tracking-widest hover:bg-[#dfe3e8] dark:hover:bg-slate-800 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span> Causas
+                </a>
+<a class="text-[#40484c] dark:text-[#c0c7cd] px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs font-medium uppercase tracking-widest hover:bg-[#dfe3e8] dark:hover:bg-slate-800 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="trending_down">trending_down</span> Impacto
+                </a>
+<a class="text-[#40484c] dark:text-[#c0c7cd] px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs font-medium uppercase tracking-widest hover:bg-[#dfe3e8] dark:hover:bg-slate-800 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span> Cierre
+                </a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 p-12 bg-surface">
+<div class="max-w-5xl mx-auto space-y-12 pb-24">
+<!-- Header Section -->
+<section class="space-y-2">
+<h1 class="text-primary font-headline text-[2.5rem] font-extrabold tracking-tight leading-tight">Paso 4: Voz del Dolor</h1>
+<p class="text-on-surface-variant font-body text-lg max-w-2xl">Perspectiva humana y narrativa del impacto directo en el usuario.</p>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Quote/Input Section -->
+<div class="lg:col-span-8 space-y-6">
+<div class="bg-surface-container-lowest rounded-xl p-8 quote-glow relative overflow-hidden group">
+<!-- Background Accent -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110 duration-500"></div>
+<label class="block text-primary font-headline font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2" for="quote-input">
+<span class="material-symbols-outlined text-lg" data-icon="format_quote">format_quote</span>
+                                ¿Qué dice el cliente literalmente sobre esto?
+                            </label>
+<div class="relative">
+<span class="absolute left-0 top-0 text-primary/20 text-6xl font-serif select-none pointer-events-none">“</span>
+<textarea class="w-full min-h-[240px] bg-transparent border-none focus:ring-0 text-2xl md:text-3xl text-on-surface font-body italic font-medium leading-relaxed placeholder:text-outline-variant/50 p-6 pt-10" id="quote-input" placeholder='"Siento que el proceso es extremadamente lento y nos quita tiempo valioso para la venta..."'></textarea>
+<span class="absolute right-0 bottom-0 text-primary/20 text-6xl font-serif select-none pointer-events-none">”</span>
+</div>
+</div>
+<div class="flex justify-end">
+<span class="text-xs font-label text-outline uppercase tracking-widest flex items-center gap-2">
+<span class="w-1 h-1 bg-primary rounded-full"></span>
+                                Autoguardado activado
+                            </span>
+</div>
+</div>
+<!-- Contextual Info Card -->
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-surface-container-low rounded-xl p-6 space-y-4 border-l-4 border-primary">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+<h3 class="font-headline font-bold text-sm uppercase tracking-wider">Contexto Estratégico</h3>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                                Este paso ayuda al Product Owner a entender la <strong>fricción emocional y operacional</strong>. No buscamos datos fríos, sino la frustración real que justifica la inversión en una solución.
+                            </p>
+<div class="pt-4 border-t border-outline-variant/15">
+<p class="text-xs text-on-surface-variant font-medium mb-3">Recomendaciones:</p>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] mt-0.5" data-icon="check">check</span>
+                                        Usa la primera persona (Yo, Nosotros).
+                                    </li>
+<li class="flex items-start gap-2 text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px] mt-0.5" data-icon="check">check</span>
+                                        Mantén los modismos originales del cliente.
+                                    </li>
+</ul>
+</div>
+</div>
+<!-- Secondary visual element -->
+<div class="bg-surface-container-highest rounded-xl h-48 relative overflow-hidden flex items-center justify-center p-6 text-center">
+<img alt="Empathy illustration" class="absolute inset-0 w-full h-full object-cover opacity-10" data-alt="Stylized abstract illustration representing human empathy with soft flowing teal lines and geometric shapes on a light background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3PJ68VF7GA68d7JEn0YfYYqGaQCa_EzBYgP0UMql56B9NIOv8YMsbU6VfqOWd6Rvmfc81Y4vU_BacNSwxeO3lcDny9vwTK4ED2iG5vE4xzngO-kULxxvTcEBwgXlJtC88VSZ4n5o8AforWGLM_s1cAvC5wi-_JezEc-w3IDkQ9O3Y0Mxs9JF0QoStbDgwxw6ln3qZkZfwfXzR4TC_vc7QEzjrk8mReFt1MkIVLaOYKtW67Kme6QBliCk35iW2SNgdz29a45CxDGI"/>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-4xl text-primary/40 mb-2" data-icon="psychology">psychology</span>
+<p class="text-xs font-medium text-primary uppercase tracking-widest">Empatía Diagnóstica</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="fixed bottom-0 w-full flex justify-between px-12 py-4 bg-white dark:bg-[#181c20] border-t border-[#dfe3e8]/15 shadow-[0px_-4px_16px_rgba(0,0,0,0.04)] z-50">
+<div class="flex items-center">
+<span class="text-[#004253] dark:text-[#005b71] font-['Inter'] text-sm font-bold">© 2024 Frisol B2B Diagnostic Platform</span>
+</div>
+<div class="flex gap-4">
+<button class="text-[#004253] bg-[#f1f4fa] px-6 py-2 rounded-md font-['Inter'] text-sm font-bold hover:brightness-110 transition-all active:scale-[0.98]">
+                Atrás
+            </button>
+<button class="bg-[#004253] text-white px-6 py-2 rounded-md font-['Manrope'] font-bold hover:brightness-110 transition-all active:scale-[0.98] flex items-center gap-2">
+                Siguiente: 5 - Causas
+                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</footer>
+</body></html>
