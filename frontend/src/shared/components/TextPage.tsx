@@ -120,26 +120,26 @@ export function TextPage({
           />
         </div>
 
-        {/* Save Status */}
+        {/* Save Status + Navigation */}
         <div className="flex justify-between items-center pt-4">
-          <div className="text-sm text-gray-500">
-            {saveStatus === 'saving' && <span className="text-yellow-600">Guardando...</span>}
-            {saveStatus === 'saved' && <span className="text-green-600">✓ Guardado</span>}
-          </div>
-          <div className="flex gap-4">
+          <div className="flex items-center gap-4">
             <button
               onClick={() => navigate(`/projects/${id}/${prevPage}`)}
               className="px-4 py-2 text-gray-600 hover:text-gray-800"
             >
               ← Anterior
             </button>
-            <button
-              onClick={() => navigate(`/projects/${id}/${nextPage}`)}
-              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-            >
-              Siguiente →
-            </button>
+            <div className="text-sm text-gray-500">
+              {saveStatus === 'saving' && <span className="text-yellow-600">Guardando...</span>}
+              {saveStatus === 'saved' && <span className="text-green-600">✓ Guardado</span>}
+            </div>
           </div>
+          <button
+            onClick={() => navigate(`/projects/${id}/${nextPage}`)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          >
+            Siguiente →
+          </button>
         </div>
       </div>
     </div>
