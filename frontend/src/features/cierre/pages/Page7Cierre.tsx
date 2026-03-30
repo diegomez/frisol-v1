@@ -141,7 +141,7 @@ export function Page7Cierre() {
     user?.role === 'csm' && project.csm_id === user.id && project.estado === 'en_progreso' && allGreen;
   const canCerrar = user?.role === 'po' && project.estado === 'terminado';
   const canRechazar = user?.role === 'po' && project.estado === 'terminado';
-  const canExportPdf = project.estado === 'cerrado';
+  const canExportPdf = true; // Available for all states (draft for en_progreso)
 
   return (
     <div>

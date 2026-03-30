@@ -19,16 +19,15 @@ export class PdfService {
   async generatePdf(projectId: string): Promise<Buffer> {
     const project = await this.projectsService.findById(projectId);
     if (!project) throw new ForbiddenException('Proyecto no encontrado');
-    if (project.estado === 'en_progreso') {
-      throw new ForbiddenException('El proyecto debe estar terminado o cerrado para exportar PDF');
-    }
+
+    const isDraft = project.estado === 'en_progreso';
 
     const symptoms = await this.symptomsService.findByProjectId(projectId);
     const causas = await this.causasService.findByProjectId(projectId);
     const kpis = await this.kpisService.findByProjectId(projectId);
     const attachments = await this.attachmentsService.findByProjectId(projectId);
 
-    const html = this.buildHtml(project, symptoms, causas, kpis, attachments);
+    const html = this.buildHtml(project, symptoms, causas, kpis, attachments, isDraft);
 
     const browser = await puppeteer.launch({
       headless: true,
@@ -50,9 +49,9 @@ export class PdfService {
     }
   }
 
-  private buildHtml(project: any, symptoms: any[], causas: any[], kpis: any[], attachments: any[]): string {
-    const estadoLabel = project.estado === 'terminado' ? 'Terminado' : 'Cerrado';
-    const estadoColor = project.estado === 'terminado' ? '#16a34a' : '#6b7280';
+  private buildHtml(project: any, symptoms: any[], causas: any[], kpis: any[], attachments: any[], isDraft: boolean): string {
+    const estadoLabel = isDraft ? 'BORRADOR' : project.estado === 'terminado' ? 'Terminado' : 'Cerrado';
+    const estadoColor = isDraft ? '#f59e0b' : project.estado === 'terminado' ? '#16a34a' : '#6b7280';
 
     const symptomsHtml = symptoms.length > 0
       ? symptoms.map((s, i) => `
@@ -160,15 +159,18 @@ export class PdfService {
         .footer { margin-top: 30px; padding-top: 10px; border-top: 1px solid #e5e7eb; font-size: 9px; color: #9ca3af; text-align: center; }
         .audit-section { margin-top: 20px; }
         .audit-section h2 { font-size: 14px; color: #1e40af; border-bottom: 1px solid #e5e7eb; padding-bottom: 5px; margin-bottom: 10px; }
+        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 80px; color: rgba(245, 158, 11, 0.08); font-weight: 900; font-family: 'Segoe UI', sans-serif; letter-spacing: 20px; z-index: -1; pointer-events: none; white-space: nowrap; }
+        .draft-badge { display: inline-block; padding: 4px 12px; background: #fef3c7; color: #92400e; border: 1px solid #f59e0b; border-radius: 6px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
         .audit-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; color: white; font-size: 9px; font-weight: bold; }
         .audit-badge.terminado { background-color: #16a34a; }
         .audit-badge.cerrado { background-color: #6b7280; }
       </style>
     </head>
     <body>
+      ${isDraft ? '<div class="watermark">BORRADOR</div>' : ''}
       <div class="header">
         <h1>FRISOL — Reporte de Proyecto</h1>
-        <div class="subtitle">Framework 4D — Traspaso Comercial → Desarrollo</div>
+        <div class="subtitle">Framework 4D — Traspaso Comercial → Desarrollo ${isDraft ? '<span class="draft-badge">BORRADOR — Datos incompletos</span>' : ''}</div>
         <div class="meta">
           <div class="client-data">
             <span class="label">ID Interno:</span> ${this.escapeHtml(project.internal_id || '—')}<br>

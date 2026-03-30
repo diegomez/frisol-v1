@@ -278,14 +278,6 @@ export function DashboardPage() {
                             Eliminar
                           </button>
                         )}
-                        {project.estado === 'cerrado' && (
-                          <button
-                            onClick={() => handleExportPdf(project.id, project.nombre_proyecto || 'proyecto')}
-                            className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
-                          >
-                            PDF
-                          </button>
-                        )}
                         {project.estado === 'cerrado' && user?.role === 'admin' && (
                           <button
                             onClick={() => handleReopen(project.id)}
@@ -294,6 +286,12 @@ export function DashboardPage() {
                             Reabrir
                           </button>
                         )}
+                        <button
+                          onClick={() => handleExportPdf(project.id, project.nombre_proyecto || 'proyecto')}
+                          className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
+                        >
+                          PDF
+                        </button>
                       </td>
                     </tr>
                   );
