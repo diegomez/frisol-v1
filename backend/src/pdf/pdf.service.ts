@@ -159,7 +159,8 @@ export class PdfService {
         .footer { margin-top: 30px; padding-top: 10px; border-top: 1px solid #e5e7eb; font-size: 9px; color: #9ca3af; text-align: center; }
         .audit-section { margin-top: 20px; }
         .audit-section h2 { font-size: 14px; color: #1e40af; border-bottom: 1px solid #e5e7eb; padding-bottom: 5px; margin-bottom: 10px; }
-        .watermark { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 80px; color: rgba(245, 158, 11, 0.08); font-weight: 900; font-family: 'Segoe UI', sans-serif; letter-spacing: 20px; z-index: -1; pointer-events: none; white-space: nowrap; }
+        .watermark { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; z-index: 0; pointer-events: none; }
+        .watermark-text { font-size: 120px; color: rgba(245, 158, 11, 0.12); font-weight: 900; font-family: 'Segoe UI', sans-serif; letter-spacing: 15px; transform: rotate(-30deg); white-space: nowrap; }
         .draft-badge { display: inline-block; padding: 4px 12px; background: #fef3c7; color: #92400e; border: 1px solid #f59e0b; border-radius: 6px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
         .audit-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; color: white; font-size: 9px; font-weight: bold; }
         .audit-badge.terminado { background-color: #16a34a; }
@@ -167,8 +168,9 @@ export class PdfService {
       </style>
     </head>
     <body>
-      ${isDraft ? '<div class="watermark">BORRADOR</div>' : ''}
-      <div class="header">
+      <div style="${isDraft ? 'position: relative;' : ''}">
+      ${isDraft ? '<div class="watermark"><span class="watermark-text">BORRADOR</span></div>' : ''}
+      <div class="header" style="position: relative; z-index: 1;">
         <h1>FRISOL — Reporte de Proyecto</h1>
         <div class="subtitle">Framework 4D — Traspaso Comercial → Desarrollo ${isDraft ? '<span class="draft-badge">BORRADOR — Datos incompletos</span>' : ''}</div>
         <div class="meta">
@@ -236,8 +238,9 @@ export class PdfService {
       </div>
       ` : ''}
 
-      <div class="footer">
+      <div class="footer" style="position: relative; z-index: 1;">
         Frisol v1 — Generado automáticamente — ${new Date().toISOString()}
+      </div>
       </div>
     </body>
     </html>
