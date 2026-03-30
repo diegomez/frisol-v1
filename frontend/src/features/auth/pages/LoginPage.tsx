@@ -26,62 +26,84 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Frisol</h1>
-          <p className="mt-2 text-gray-600">Framework 4D — Traspaso Comercial → Desarrollo</p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-surface via-surface-container-low to-surface">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-tertiary-fixed/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative w-full max-w-md mx-4">
+        {/* Logo + Title */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-primary-container rounded-2xl shadow-elevated mb-4">
+            <span className="text-white text-2xl font-extrabold font-headline">F</span>
+          </div>
+          <h1 className="text-3xl font-extrabold font-headline text-on-surface tracking-tight">
+            Frisol
+          </h1>
+          <p className="mt-2 text-sm font-body text-on-surface-variant">
+            Framework 4D — Traspaso Comercial → Desarrollo
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
-              {error}
+        {/* Card */}
+        <div className="bg-surface-container-lowest/80 backdrop-blur-xl rounded-2xl shadow-elevated p-8 border border-outline-variant/15">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {error && (
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+                {error}
+              </div>
+            )}
+
+            <div>
+              <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-2">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="input-field"
+                placeholder="csm@frisol.com"
+              />
             </div>
-          )}
 
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="csm@frisol.com"
-            />
-          </div>
+            <div>
+              <label htmlFor="password" className="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-2">
+                Contraseña
+              </label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="input-field"
+                placeholder="••••••••"
+              />
+            </div>
 
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Contraseña
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              placeholder="••••••••"
-            />
-          </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="btn-primary w-full flex justify-center items-center gap-2 mt-6"
+            >
+              {isSubmitting ? 'Ingresando...' : 'Iniciar sesión'}
+              {!isSubmitting && (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              )}
+            </button>
+          </form>
+        </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-          >
-            {isSubmitting ? 'Ingresando...' : 'Iniciar sesión'}
-          </button>
-        </form>
-
-        <div className="text-center text-sm text-gray-500">
-          <p>Usuarios de prueba:</p>
-          <p>csm@frisol.com / po@frisol.com / dev@frisol.com</p>
+        {/* Footer hint */}
+        <div className="text-center mt-6 text-xs text-on-surface-variant/60">
+          <p>Usuarios de prueba: csm / po / dev / admin @frisol.com</p>
           <p>Contraseña: password123</p>
         </div>
       </div>

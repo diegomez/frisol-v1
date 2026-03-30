@@ -7,9 +7,9 @@ import { Layout } from '../../../shared/components/Layout';
 import api from '../../../shared/api/axios';
 
 const stateColors: Record<string, { bg: string; text: string; label: string }> = {
-  en_progreso: { bg: 'bg-orange-100', text: 'text-orange-800', label: 'En Progreso' },
-  terminado: { bg: 'bg-green-100', text: 'text-green-800', label: 'Terminado' },
-  cerrado: { bg: 'bg-gray-100', text: 'text-gray-800', label: 'Cerrado' },
+  en_progreso: { bg: 'bg-amber-100', text: 'text-amber-800', label: 'En Progreso' },
+  terminado: { bg: 'bg-emerald-100', text: 'text-emerald-800', label: 'Terminado' },
+  cerrado: { bg: 'bg-gray-200', text: 'text-gray-700', label: 'Cerrado' },
 };
 
 export function DashboardPage() {
@@ -115,20 +115,20 @@ export function DashboardPage() {
           <div className="flex gap-2">
             <button
               onClick={() => setFilter('mine')}
-              className={`px-4 py-2 rounded-md text-sm font-medium ${
+              className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
                 filter === 'mine'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-primary text-white shadow-card'
+                  : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest'
               }`}
             >
               Mis proyectos
             </button>
             <button
               onClick={() => setFilter('all')}
-              className={`px-4 py-2 rounded-md text-sm font-medium ${
+              className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
                 filter === 'all'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-primary text-white shadow-card'
+                  : 'bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest'
               }`}
             >
               Todos los proyectos
@@ -138,17 +138,32 @@ export function DashboardPage() {
 
         {/* Counter Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-            <div className="text-3xl font-bold text-orange-600">{counters.en_progreso}</div>
-            <div className="text-sm text-orange-800">En Progreso</div>
+          <div className="card flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-amber-500" />
+            </div>
+            <div>
+              <div className="text-2xl font-extrabold font-headline text-on-surface">{counters.en_progreso}</div>
+              <div className="text-xs text-on-surface-variant font-medium">En Progreso</div>
+            </div>
           </div>
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-            <div className="text-3xl font-bold text-green-600">{counters.terminado}</div>
-            <div className="text-sm text-green-800">Terminados</div>
+          <div className="card flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-emerald-500" />
+            </div>
+            <div>
+              <div className="text-2xl font-extrabold font-headline text-on-surface">{counters.terminado}</div>
+              <div className="text-xs text-on-surface-variant font-medium">Terminados</div>
+            </div>
           </div>
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <div className="text-3xl font-bold text-gray-600">{counters.cerrado}</div>
-            <div className="text-sm text-gray-800">Cerrados</div>
+          <div className="card flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-gray-100 flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-gray-400" />
+            </div>
+            <div>
+              <div className="text-2xl font-extrabold font-headline text-on-surface">{counters.cerrado}</div>
+              <div className="text-xs text-on-surface-variant font-medium">Cerrados</div>
+            </div>
           </div>
         </div>
 
@@ -156,15 +171,15 @@ export function DashboardPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           <input
             type="text"
-            placeholder="Buscar por cliente o proyecto..."
+            placeholder="Buscar por cliente, proyecto, ID o tribu..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="flex-1 input-field"
           />
           <select
             value={stateFilter}
             onChange={(e) => setStateFilter(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+            className="input-field sm:w-48"
           >
             <option value="all">Todos los estados</option>
             <option value="en_progreso">En Progreso</option>
@@ -179,29 +194,28 @@ export function DashboardPage() {
         ) : filteredProjects.length === 0 ? (
           <div className="text-center py-8 text-gray-500">No hay proyectos</div>
         ) : (
-          <div className="bg-white rounded-lg shadow overflow-x-auto">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+          <div className="card overflow-x-auto p-0">
+            <table className="w-full text-left">
+              <thead className="bg-surface-container-low">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Progreso</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Proyecto</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cliente</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tribu</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Inicio</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Estado</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Acciones</th>
+                  <th className="px-6 py-4 text-[10px] font-bold text-primary uppercase tracking-widest">ID</th>
+                  <th className="px-6 py-4 text-[10px] font-bold text-primary uppercase tracking-widest">Progreso</th>
+                  <th className="px-6 py-4 text-[10px] font-bold text-primary uppercase tracking-widest">Proyecto</th>
+                  <th className="px-6 py-4 text-[10px] font-bold text-primary uppercase tracking-widest">Cliente</th>
+                  <th className="px-6 py-4 text-[10px] font-bold text-primary uppercase tracking-widest">Tribu</th>
+                  <th className="px-6 py-4 text-[10px] font-bold text-primary uppercase tracking-widest">Inicio</th>
+                  <th className="px-6 py-4 text-[10px] font-bold text-primary uppercase tracking-widest">Estado</th>
+                  <th className="px-6 py-4 text-[10px] font-bold text-primary uppercase tracking-widest">Acciones</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody>
                 {filteredProjects.map((project) => {
-                  const state = stateColors[project.estado];
                   const canEdit = project.estado === 'en_progreso' &&
                     (user?.role === 'po' || (user?.role === 'csm' && project.csm_id === user.id));
 
                   return (
-                    <tr key={project.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-gray-500">
+                    <tr key={project.id} className="hover:bg-surface-container-low/40 transition-colors border-t border-outline-variant/5">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-mono text-on-surface-variant">
                         {project.internal_id || '—'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
@@ -211,9 +225,9 @@ export function DashboardPage() {
                               <span
                                 key={i}
                                 className={`w-3 h-3 rounded-full ${
-                                  status === 'green' ? 'bg-green-500'
-                                  : status === 'yellow' ? 'bg-yellow-500'
-                                  : 'bg-red-500'
+                                  status === 'green' ? 'bg-emerald-500'
+                                  : status === 'yellow' ? 'bg-amber-500'
+                                  : 'bg-red-400'
                                 }`}
                                 title={Object.keys(project.progress!)[i]}
                               />
@@ -222,36 +236,36 @@ export function DashboardPage() {
                         ) : '—'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">
+                        <div className="text-sm font-semibold text-on-surface">
                           {project.nombre_proyecto || 'Sin nombre'}
                         </div>
-                        <div className="text-sm text-gray-500">{project.csm_name}</div>
+                        <div className="text-xs text-on-surface-variant">{project.csm_name}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-on-surface-variant">
                         {project.nombre_cliente || '—'}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-on-surface-variant">
                         {project.tribe_name || '—'}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-on-surface-variant">
                         {project.fecha_inicio || '—'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${state.bg} ${state.text}`}>
-                          {state.label}
+                        <span className={stateColors[project.estado].bg + ' ' + stateColors[project.estado].text + ' badge'}>
+                          {stateColors[project.estado].label}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm space-x-2">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm space-x-3">
                         <button
                           onClick={() => navigate(`/projects/${project.id}/7-cierre`)}
-                          className="text-blue-600 hover:text-blue-800"
+                          className="text-primary hover:text-primary-container font-semibold transition-colors"
                         >
                           Ver
                         </button>
                         {canEdit && (
                           <button
                             onClick={() => navigate(`/projects/${project.id}/1-cliente`)}
-                            className="text-green-600 hover:text-green-800"
+                            className="text-emerald-600 hover:text-emerald-700 font-semibold transition-colors"
                           >
                             Editar
                           </button>
@@ -259,7 +273,7 @@ export function DashboardPage() {
                         {project.estado === 'en_progreso' && (user?.role === 'csm' || user?.role === 'po') && (
                           <button
                             onClick={() => handleDelete(project.id)}
-                            className="text-red-600 hover:text-red-800"
+                            className="text-red-500 hover:text-red-600 font-semibold transition-colors"
                           >
                             Eliminar
                           </button>
@@ -267,7 +281,7 @@ export function DashboardPage() {
                         {project.estado === 'cerrado' && (
                           <button
                             onClick={() => handleExportPdf(project.id, project.nombre_proyecto || 'proyecto')}
-                            className="text-purple-600 hover:text-purple-800"
+                            className="text-purple-600 hover:text-purple-700 font-semibold transition-colors"
                           >
                             PDF
                           </button>
@@ -275,7 +289,7 @@ export function DashboardPage() {
                         {project.estado === 'cerrado' && user?.role === 'admin' && (
                           <button
                             onClick={() => handleReopen(project.id)}
-                            className="text-orange-600 hover:text-orange-800"
+                            className="text-amber-600 hover:text-amber-700 font-semibold transition-colors"
                           >
                             Reabrir
                           </button>
