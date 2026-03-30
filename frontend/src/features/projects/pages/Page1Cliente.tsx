@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useOutletContext, useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { HelpZone } from '../../../shared/components/HelpZone';
+import { AttachmentsSection } from '../../attachments/components/AttachmentsSection';
 import { useAuthStore } from '../../auth/store/auth.store';
 import api from '../../../shared/api/axios';
 
@@ -213,6 +214,11 @@ export function Page1Cliente() {
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
             placeholder="Ej: Juan Pérez (CFO) — jperez@techcorp.com — +54 11 1234-5678"
           />
+        </div>
+
+        {/* Attachments */}
+        <div className="border-t border-gray-100 pt-4">
+          <AttachmentsSection projectId={id!} isEditable={isEditable} />
         </div>
 
         {/* Save Status */}

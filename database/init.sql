@@ -76,6 +76,16 @@ CREATE TABLE kpis (
   created_at TIMESTAMP DEFAULT NOW()
 );
 
+CREATE TABLE attachments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  project_id UUID NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
+  title VARCHAR(255) NOT NULL,
+  original_name VARCHAR(255) NOT NULL,
+  stored_name VARCHAR(255) NOT NULL,
+  file_size INTEGER,
+  uploaded_at TIMESTAMP DEFAULT NOW()
+);
+
 -- Trigger for updated_at
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$

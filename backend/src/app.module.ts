@@ -7,6 +7,7 @@ import { ProjectsModule } from './projects/projects.module';
 import { SymptomsModule } from './symptoms/symptoms.module';
 import { CausasModule } from './causas/causas.module';
 import { KpisModule } from './kpis/kpis.module';
+import { AttachmentsModule } from './attachments/attachments.module';
 import { PdfModule } from './pdf/pdf.module';
 
 @Module({
@@ -28,6 +29,7 @@ import { PdfModule } from './pdf/pdf.module';
     SymptomsModule,
     CausasModule,
     KpisModule,
+    AttachmentsModule,
     PdfModule,
   ],
   controllers: [],

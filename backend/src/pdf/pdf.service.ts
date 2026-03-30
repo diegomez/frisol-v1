@@ -4,6 +4,7 @@ import { ProjectsService } from '../projects/projects.service';
 import { SymptomsService } from '../symptoms/symptoms.service';
 import { CausasService } from '../causas/causas.service';
 import { KpisService } from '../kpis/kpis.service';
+import { AttachmentsService } from '../attachments/attachments.service';
 
 @Injectable()
 export class PdfService {
@@ -12,6 +13,7 @@ export class PdfService {
     private symptomsService: SymptomsService,
     private causasService: CausasService,
     private kpisService: KpisService,
+    private attachmentsService: AttachmentsService,
   ) {}
 
   async generatePdf(projectId: string): Promise<Buffer> {
@@ -24,8 +26,9 @@ export class PdfService {
     const symptoms = await this.symptomsService.findByProjectId(projectId);
     const causas = await this.causasService.findByProjectId(projectId);
     const kpis = await this.kpisService.findByProjectId(projectId);
+    const attachments = await this.attachmentsService.findByProjectId(projectId);
 
-    const html = this.buildHtml(project, symptoms, causas, kpis);
+    const html = this.buildHtml(project, symptoms, causas, kpis, attachments);
 
     const browser = await puppeteer.launch({
       headless: true,
@@ -47,7 +50,7 @@ export class PdfService {
     }
   }
 
-  private buildHtml(project: any, symptoms: any[], causas: any[], kpis: any[]): string {
+  private buildHtml(project: any, symptoms: any[], causas: any[], kpis: any[], attachments: any[]): string {
     const estadoLabel = project.estado === 'terminado' ? 'Terminado' : 'Cerrado';
     const estadoColor = project.estado === 'terminado' ? '#16a34a' : '#6b7280';
 
@@ -91,6 +94,15 @@ export class PdfService {
           </tbody>
         </table>`
       : '<p class="empty">No hay KPIs cargados.</p>';
+
+    const attachmentsHtml = attachments.length > 0
+      ? `<table>
+          <thead><tr><th>Título</th><th>Archivo</th><th>Tamaño</th><th>Fecha</th></tr></thead>
+          <tbody>
+            ${attachments.map(a => `<tr><td>${this.escapeHtml(a.title)}</td><td>${this.escapeHtml(a.original_name)}</td><td>${Math.round(a.file_size / 1024)} KB</td><td>${new Date(a.uploaded_at).toLocaleDateString('es-AR')}</td></tr>`).join('')}
+          </tbody>
+        </table>`
+      : '<p class="empty">No hay archivos adjuntos.</p>';
 
     // Build audit trail
     const formatDate = (d: Date) => {
@@ -205,6 +217,11 @@ export class PdfService {
         <div class="text-block">${this.escapeHtml(project.impacto_negocio || 'No hay datos cargados.')}</div>
         <h4 style="margin-top: 10px;">KPIs / Métricas</h4>
         ${kpisHtml}
+      </div>
+
+      <div class="section">
+        <h2>7. Archivos Adjuntos</h2>
+        ${attachmentsHtml}
       </div>
 
       ${auditHtml ? `

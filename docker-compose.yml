@@ -35,6 +35,9 @@ services:
       DATABASE_NAME: frisol
       DATABASE_USER: frisol
       DATABASE_PASSWORD: frisol
+      UPLOAD_DIR: /app/uploads
+    volumes:
+      - uploads:/app/uploads
 
   frontend:
     build:
@@ -48,3 +51,4 @@ services:
 
 volumes:
   postgres_data:
+  uploads:

@@ -6,6 +6,7 @@ import { HelpZone } from '../../../shared/components/HelpZone';
 import { symptomsService } from '../../diagnostico/services/symptoms.service';
 import { causasService } from '../../causas/services/causas.service';
 import { kpisService } from '../../impacto/services/kpis.service';
+import { attachmentsService } from '../../attachments/services/attachments.service';
 import { ProjectProgress } from '../../dashboard/types/project.types';
 import { Symptom } from '../../diagnostico/types/symptom.types';
 import { Causa } from '../../causas/types/causa.types';
@@ -68,6 +69,14 @@ export function Page7Cierre() {
   const { data: kpis = [] } = useQuery({
     queryKey: ['kpis', id],
     queryFn: () => kpisService.findAll(id!),
+    enabled: !!id,
+    staleTime: 0,
+    refetchOnMount: true,
+  });
+
+  const { data: attachments = [] } = useQuery({
+    queryKey: ['attachments', id],
+    queryFn: () => attachmentsService.findAll(id!),
     enabled: !!id,
     staleTime: 0,
     refetchOnMount: true,
@@ -418,6 +427,30 @@ export function Page7Cierre() {
               </div>
             )}
           </div>
+        </SummarySection>
+
+        {/* 7. Archivos Adjuntos */}
+        <SummarySection
+          title="7. Archivos Adjuntos"
+          status={attachments.length > 0 ? 'green' : 'red'}
+          onEdit={() => navigate(`/projects/${id}/1-cliente`)}
+          editable={project.estado === 'en_progreso'}
+        >
+          {attachments.length === 0 ? (
+            <p className="text-sm text-gray-500">No hay archivos adjuntos.</p>
+          ) : (
+            <div className="space-y-1">
+              {attachments.map((att: any, i: number) => (
+                <div key={att.id} className="text-sm flex items-center gap-2">
+                  <span className="font-medium">#{i + 1}</span>
+                  <span className="font-medium text-gray-900">{att.title}</span>
+                  <span className="text-gray-500">| {att.original_name}</span>
+                  <span className="text-gray-500">| {Math.round(att.file_size / 1024)} KB</span>
+                  <span className="text-gray-500">| {new Date(att.uploaded_at).toLocaleDateString('es-AR')}</span>
+                </div>
+              ))}
+            </div>
+          )}
         </SummarySection>
       </div>
 
